@@ -1,0 +1,480 @@
+/* 网站统计组件样式 */
+.site-stats {
+    font-family: inherit;
+}
+
+.site-stats-content {
+    padding: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.site-stats-content p {
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+.site-stats-content .stats-highlight {
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+.site-stats-content .stats-number {
+    font-weight: bold;
+    color: #198754;
+}
+
+.site-stats-content .stats-text {
+    color: #6c757d;
+}
+
+/* 统计数字动画效果 */
+.stats-counter {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.stats-counter.updating {
+    transform: scale(1.1);
+    color: #ffc107 !important;
+}
+
+/* 在线状态指示器 */
+.online-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #28a745;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+/* 加载状态 */
+.stats-loading {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.stats-loading::after {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    border: 2px solid #6c757d;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 错误状态 */
+.stats-error {
+    text-align: center;
+    color: #dc3545;
+    font-size: 0.8rem;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .site-stats-content {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+    }
+    
+    .site-stats-content p {
+        margin-bottom: 0.6rem;
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .site-stats-content {
+        color: #e9ecef;
+    }
+    
+    .site-stats-content .stats-text {
+        color: #adb5bd;
+    }
+    
+    .site-stats-content .stats-highlight {
+        color: #6ea8fe;
+    }
+    
+    .site-stats-content .stats-number {
+        color: #75b798;
+    }
+    
+    .stats-loading {
+        color: #adb5bd;
+    }
+    
+    .stats-loading::after {
+        border-color: #adb5bd;
+        border-top-color: transparent;
+    }
+    
+    /* 深色模式下保持欢迎文本的渐变效果 */
+    .stats-welcome-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    /* 深色模式下的card样式 */
+    .site-stats.card {
+        background-color: var(--bs-dark);
+        border-color: rgba(255,255,255,.125);
+    }
+}
+
+/* 与现有侧边栏样式保持一致 */
+.site-stats.card {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+}
+
+.site-stats .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.site-stats .ios {
+    margin-left: auto;
+}
+
+/* 统计项目样式 */
+.stats-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.stats-item:last-child {
+    border-bottom: none;
+}
+
+.stats-item-label {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.stats-item-value {
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+/* 特殊样式 */
+.stats-welcome-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-attachment: fixed;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    position: relative;
+    /* 防止背景闪烁 */
+    will-change: auto;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.stats-welcome-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0.1;
+    border-radius: 0.25rem;
+    z-index: -1;
+    /* 防止背景闪烁 */
+    will-change: auto;
+    backface-visibility: hidden;
+}
+
+/* 统计数据容器样式 */
+.stats-data-container {
+    margin-bottom: 1rem;
+}
+
+/* IPv6 支持信息样式 - 现在集成在统计数据区域内 */
+.stats-ipv6-info {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: 500;
+    margin: 1rem 0 0 0;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+    /* 防止背景闪烁 */
+    will-change: auto;
+    backface-visibility: hidden;
+}
+
+.stats-ipv6-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.stats-ipv6-icon {
+    font-size: 1.1em;
+    margin-right: 0.5rem;
+    animation: rotate 3s linear infinite;
+}
+
+.stats-ipv6-text {
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 深色模式下的IPv6样式 */
+@media (prefers-color-scheme: dark) {
+    .stats-ipv6-info {
+        background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+        box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+    }
+    
+    .stats-ipv6-info:hover {
+        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .site-stats-content {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .site-stats-content p {
+        margin-bottom: 0.6rem;
+    }
+}
+
+
+
+/* 平滑过渡效果 */
+.site-stats-content * {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* 防止所有统计元素闪烁 */
+.site-stats-content {
+    will-change: auto;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.site-stats-content .stats-counter {
+    will-change: auto;
+    backface-visibility: hidden;
+}
+
+/* 数据更新动画 - 平滑淡入淡出效果 */
+@keyframes dataUpdate {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.stats-updating {
+    animation: dataUpdate var(--animation-duration, 0.8s) ease-in-out;
+}
+
+/* 数字变化时的平滑过渡 */
+.stats-number, .stats-counter {
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+/* 数字更新动画 */
+.number-updating {
+    position: relative;
+}
+
+.number-updating::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+    animation: numberShimmer 0.6s ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes numberShimmer {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* 防止布局跳动 */
+.site-stats-content {
+    min-height: 120px;
+    position: relative;
+}
+
+/* 主题样式 */
+.site-stats[data-theme="light"] {
+    background: #ffffff;
+    color: #333333;
+}
+
+.site-stats[data-theme="dark"] {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+.site-stats[data-theme="dark"] .stats-highlight {
+    color: #4fc3f7 !important;
+}
+
+.site-stats[data-theme="dark"] .stats-number {
+    color: #81c784 !important;
+}
+
+/* 卡片样式 */
+.site-stats[data-style="card"] {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+}
+
+.site-stats[data-style="minimal"] {
+    border: none;
+    background: transparent;
+    padding: 0.5rem;
+}
+
+.site-stats[data-style="minimal"] .stats-welcome-text {
+    display: none;
+}
+
+.stats-highlight {
+    transition: color 0.6s ease, opacity 0.6s ease;
+}
+
+/* 访客状态指示 */
+.visitor-status {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+.visitor-status.new-visitor {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.visitor-status.returning-visitor {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* 统计卡片样式 */
+.stats-card {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    .stats-card {
+        background: #343a40;
+        border-color: #495057;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .visitor-status {
+        background-color: #495057;
+        color: #adb5bd;
+    }
+    
+    .visitor-status.new-visitor {
+        background-color: #0c5460;
+        color: #b8daff;
+    }
+    
+    .visitor-status.returning-visitor {
+        background-color: #155724;
+        color: #c3e6cb;
+    }
+}
+
+/* PJAX 兼容性样式 */
+.pjax-loading .site-stats {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.pjax-loading .stats-loading::after {
+    animation-duration: 0.8s;
+}
